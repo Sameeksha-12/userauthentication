@@ -1,0 +1,91 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Dezhvery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; 
+            color: #000;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height:100vh;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #000; 
+            color: #fff; 
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .alert {
+            background-color: #000; 
+            color: #fff; 
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    
+    <h1>Welcome to Devzery</h1>
+
+    {% if user.is_authenticated %}
+    <h3>Hello {{ fname }}</h3>
+    <h4>You're successfully logged in.</h4>
+    <div>
+        <button type="submit"><a href="/manageprofile" style="color: #fff; text-decoration: none;">Manage Profile</a></button>
+        <button type="submit"><a href="/signout" style="color: #fff; text-decoration: none;">Sign Out</a></button>
+    </div>
+    
+    {% else %}
+    <div>
+        <button type="submit"><a href="/signup" style="color: #fff; text-decoration: none;">Sign Up</a></button>
+        <button type="submit"><a href="/signin" style="color: #fff; text-decoration: none;">Sign In</a></button>
+    </div>
+    {% endif %}
+</body>
+</html>
